@@ -18,8 +18,8 @@ gcloud compute instances create cmpe283assignment1 \
 ![screenshot(1)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%209.19.10%20PM.png)
 
 step-2: Created a cmpe283assig.c source file inside a directory. Copied the content given by the professor for pinbased and added capabilities info for Primary Processor-Based, Secondary Processor-Based, Primary VM-Exit Controls, VM-Entry Controls and Tertiary Processor-Based VM-Execution Controls in the .c file.  
-![Screenshot (419)](https://user-images.githubusercontent.com/45283425/200281266-3c6ebe0c-ab58-4c99-93d0-3c2b7b33e320.png)
-![Screenshot (420)](https://user-images.githubusercontent.com/45283425/200281576-ad2a0c05-58e9-40c7-8fa6-da172c2eaa78.png)
+![Screenshot (2)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%2010.22.01%20PM.png)
+![Screenshot (3)]()
 
 step-3: Now, sudo bash command is given to go into the root and install "make" using command "apt install gcc make" and exit from the root user.  
 ![Screenshot (421)](https://user-images.githubusercontent.com/45283425/200282047-cdeb7eb3-0982-44d6-b6d8-052930cbe012.png)
@@ -34,6 +34,7 @@ step-6: Run "make" command to generate .o and .ko files.
 step-7: Run "sudo insmod cmpe283assignment1.ko" command to insert module into the kernel.  
 
 step-8: Run "sudo dmesg" to print the output.  
-![Screenshot (424)](https://user-images.githubusercontent.com/45283425/200283435-e90f55f1-c93e-4334-b929-54065eb36b8a.png)
-![Screenshot (425)](https://user-images.githubusercontent.com/45283425/200283483-c09da4f1-3c5d-47ae-b0c6-c89c86bb7263.png)
-![Screenshot (426)](https://user-images.githubusercontent.com/45283425/200283525-a2c1dc23-d6d3-4969-98e1-05d0cc8f5685.png)
+![Screenshot (3)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%209.14.43%20PM.png)
+![Screenshot (4)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%209.15.34%20PM.png)
+![Screenshot_(6)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%209.16.39%20PM.png)
+![Screenshot (5)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%209.18.31%20PM.png)
