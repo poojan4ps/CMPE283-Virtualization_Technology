@@ -14,11 +14,10 @@ step-1: Created a virtual machine instance with nested virtualization enabled th
 gcloud compute instances create cmpe283assignment1 \
   --enable-nested-virtualization \
   --zone=us-central1-a \
-  --min-cpu-platform="Intel Haswell"  
-![Screenshot (418)](<img width="1440" alt="Screen Shot 2022-11-07 at 9 19 10 PM" src="https://user-images.githubusercontent.com/45978869/200490402-fcb3ff6c-242f-4ec8-89ed-043eaed17d4e.png">
-)
+  --min-cpu-platform="Mac M1"  
+![Screenshot](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/issues/1#issue-1439577908)
 
-step-2: Created a cmpe283assignment1.c source file inside a directory. Copied the content given by the professor for pinbased and added capabilities info for Primary Processor-Based, Secondary Processor-Based, Primary VM-Exit Controls, VM-Entry Controls and Tertiary Processor-Based VM-Execution Controls in the .c file.  
+step-2: Created a cmpe283assig.c source file inside a directory. Copied the content given by the professor for pinbased and added capabilities info for Primary Processor-Based, Secondary Processor-Based, Primary VM-Exit Controls, VM-Entry Controls and Tertiary Processor-Based VM-Execution Controls in the .c file.  
 ![Screenshot (419)](https://user-images.githubusercontent.com/45283425/200281266-3c6ebe0c-ab58-4c99-93d0-3c2b7b33e320.png)
 ![Screenshot (420)](https://user-images.githubusercontent.com/45283425/200281576-ad2a0c05-58e9-40c7-8fa6-da172c2eaa78.png)
 
