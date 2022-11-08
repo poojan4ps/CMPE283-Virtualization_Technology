@@ -1,172 +1,39 @@
 # Poojan Shah 016583528
 
-# Discovering VMX Features
+# CMPE283Assignment1
 
-Work done By Poojan Shah
+# Questions:
+Describe in detail the steps you used to complete the assignment. Consider your reader to be someone 
+skilled in software development but otherwise unfamiliar with the assignment. Good answers to this 
+question will be recipes that someone can follow to reproduce your development steps.
+Note: I may decide to follow these instructions for random assignments, so you should make sure 
+they are accurate.
 
-> Configure a Linux machine, either VM based or on real hardware. You may use any Linux distribution you wish.
-> Download and build the Linux kernel source code
-> Create a new kernel module with the assignment functionality
-> Load (insert) the new module
-> Verify proper output in the system message log.
+# Answers:
+step-1: Created a virtual machine instance with nested virtualization enabled through cloud shell.  
+gcloud compute instances create cmpe283assignment1 \
+  --enable-nested-virtualization \
+  --zone=us-central1-a \
+  --min-cpu-platform="Intel Haswell"  
+![Screenshot (418)](Screen Shot 2022-11-07 at 9.19.10 PM.png)
 
-## Introduction
+step-2: Created a cmpe283assignment1.c source file inside a directory. Copied the content given by the professor for pinbased and added capabilities info for Primary Processor-Based, Secondary Processor-Based, Primary VM-Exit Controls, VM-Entry Controls and Tertiary Processor-Based VM-Execution Controls in the .c file.  
+![Screenshot (419)](https://user-images.githubusercontent.com/45283425/200281266-3c6ebe0c-ab58-4c99-93d0-3c2b7b33e320.png)
+![Screenshot (420)](https://user-images.githubusercontent.com/45283425/200281576-ad2a0c05-58e9-40c7-8fa6-da172c2eaa78.png)
 
- > Intialize Google Cloud CLI on your local machine for managing the compute engine resources with the command and spin up a Linux instance by running the following commands,
+step-3: Now, sudo bash command is given to go into the root and install "make" using command "apt install gcc make" and exit from the root user.  
+![Screenshot (421)](https://user-images.githubusercontent.com/45283425/200282047-cdeb7eb3-0982-44d6-b6d8-052930cbe012.png)
 
-`gcloud compute instances create YOUR_INSTANCE_NAME --enable-nested-virtualization --min-cpu-platform="Intel Haswell"`
+step-4: Run "sudo apt install linux-headers-$(uname -r)"  
+step-5: Create Makefile using command "nano Makefile" and copy the Makefile content given by the professor and replace the .o file name.  
+![Screenshot (422)](https://user-images.githubusercontent.com/45283425/200282393-2887445b-9999-4cb8-abec-16580a42f4a9.png)
 
- > Enter "YOUR_INSTANCE_NAME".
+step-6: Run "make" command to generate .o and .ko files.  
+![Screenshot (423)](https://user-images.githubusercontent.com/45283425/200282819-dd9b37ff-1a88-4154-9388-c5f9bd5bff60.png)
 
- > Choose the best suitable zone as per your need, we choose "us-central1-a" zone while installing Google Cloud CLI.
+step-7: Run "sudo insmod cmpe283assignment1.ko" command to insert module into the kernel.  
 
- > Then create nested virtualization by adding the flag "--enable-nested-virtualization" and the CPU platform is set to "Intel Haswell".
-
-### Add SSH into your nested virtualization
-
- > add SSH into your instance by using the this command, where place your zone name and project name
-
-`gcloud compute ssh --zone "YOUR_ZONE" "YOUR_INSTANCE_NAME" --project "YOUR_PROJECT_NAME"`
-
- > Once you are inside the linux instance, you need to setup a couple of tools in order to execute the C source code.
-
-### Installation of the gcc and make in instance
-
-`sudo apt install gcc make`
-
-### Install headers in Linux OS
-
-`sudo apt install linux-headers-$(uname -r)`
-
-### Clone cod from GITHUB repo and Execute the code
-
- > Generate the C file by using the following command that will create ".ko" file form "vmx-cap.c" file
-
-`make`
-
-### Insetation of kernel module into the Linux kernel
-
- > Run the following command for inserting the module to Linux kernel
-
-`sudo insmod vmx-cap.ko`
-
-### Reterive output
-
- > Use the following command to display output from the kernel buffer
-
-`sudo dmesg`
-
-
-```
-[   92.247815] CMPE-283-Assignment-1 Module Start
-[   92.253628] Pinbased Controls MSR: 0x3f00000016
-[   92.259683]   External Interrupt Exiting: Can set=Yes, Can clear=Yes
-[   92.267708]   NMI Exiting: Can set=Yes, Can clear=Yes
-[   92.274494]   Virtual NMIs: Can set=Yes, Can clear=Yes
-[   92.281133]   Activate VMX Preemption Timer: Can set=No, Can clear=Yes
-[   92.289165]   Process Posted Interrupts: Can set=No, Can clear=Yes
-[   92.300100] Procbased Controls MSR: 0xf7b9fffe0401e172
-[   92.306733]   Interrupt Window Exiting: Can set=Yes, Can clear=Yes
-[   92.314411]   Use TSC Offsetting: Can set=Yes, Can clear=Yes
-[   92.321575]   HLT Exiting: Can set=Yes, Can clear=Yes
-[   92.328121]   INVLPG Exiting: Can set=Yes, Can clear=Yes
-[   92.334936]   MWAIT Exiting: Can set=Yes, Can clear=Yes
-[   92.341831]   RDPMC Exiting: Can set=Yes, Can clear=Yes
-[   92.348531]   RDTSC Exiting: Can set=Yes, Can clear=Yes
-[   92.354428]   CR3 Load Exiting: Can set=Yes, Can clear=No
-[   92.359942]   CR3 Store Exiting: Can set=Yes, Can clear=No
-[   92.365882]   Activate Tertiary Controls: Can set=No, Can clear=Yes
-[   92.372257]   CR8 Load Exiting: Can set=Yes, Can clear=Yes
-[   92.377851]   CR8 Store Exiting: Can set=Yes, Can clear=Yes
-[   92.383529]   Use TPR Shadow: Can set=Yes, Can clear=Yes
-[   92.388949]   NMI Window Exiting: Can set=No, Can clear=Yes
-[   92.394627]   MOV-DR Exiting: Can set=Yes, Can clear=Yes
-[   92.400163]   Unconditional I/O Exiting: Can set=Yes, Can clear=Yes
-[   92.406537]   Use I/O Bitmaps: Can set=Yes, Can clear=Yes
-[   92.412050]   Monitor Trap Flag: Can set=No, Can clear=Yes
-[   92.417641]   Use MSR Bitmaps: Can set=Yes, Can clear=Yes
-[   92.423146]   MONITOR Exiting: Can set=Yes, Can clear=Yes
-[   92.428657]   PAUSE Exiting: Can set=Yes, Can clear=Yes
-[   92.433992]   Activate Secondary Controls: Can set=Yes, Can clear=Yes
-[   92.442294] Secondary Procbased Controls MSR: 0x51ff00000000
-[   92.448065]   Virtualize APIC accesses: Can set=Yes, Can clear=Yes
-[   92.454352]   Enable EPT: Can set=Yes, Can clear=Yes
-[   92.459419]   Descriptor Table Exiting: Can set=Yes, Can clear=Yes
-[   92.465702]   Enable RDTSCP: Can set=Yes, Can clear=Yes
-[   92.471032]   Virtualize x2APIC Mode: Can set=Yes, Can clear=Yes
-[   92.477146]   Enable VPID: Can set=Yes, Can clear=Yes
-[   92.482313]   WBINVD Exiting: Can set=Yes, Can clear=Yes
-[   92.487739]   Unrestricted Guest: Can set=Yes, Can clear=Yes
-[   92.493608]   APIC-register Virtualization: Can set=Yes, Can clear=Yes
-[   92.500246]   Virtual-interrupt Delivery: Can set=No, Can clear=Yes
-[   92.506629]   PAUSE-loop Exiting: Can set=No, Can clear=Yes
-[   92.512309]   RDRAND exiting: Can set=No, Can clear=Yes
-[   92.517643]   Enable INVPCID: Can set=Yes, Can clear=Yes
-[   92.523181]   Enable VM Functions: Can set=No, Can clear=Yes
-[   92.528943]   VMCS Shadowing: Can set=Yes, Can clear=Yes
-[   92.534362]   Enable ENCLS Exiting: Can set=No, Can clear=Yes
-[   92.540212]   RDSEED Exiting: Can set=No, Can clear=Yes
-[   92.545547]   Enable PML: Can set=No, Can clear=Yes
-[   92.550621]   EPT-violation #VE: Can set=No, Can clear=Yes
-[   92.556214]   Conceal VMX from PT: Can set=No, Can clear=Yes
-[   92.561980]   Enable XSAVES/XRSTORS: Can set=No, Can clear=Yes
-[   92.567920]   Mode-based Execute Control for EPT: Can set=No, Can clear=Yes
-[   92.574990]   Sub-page Write Permissions for EPT: Can set=No, Can clear=Yes
-[   92.582058]   Intel PT Uses Guest Physical Addresses: Can set=No, Can clear=Yes
-[   92.589496]   Use TSC Scaling: Can set=No, Can clear=Yes
-[   92.594916]   Enable User Wait and Pause: Can set=No, Can clear=Yes
-[   92.601288]   Enable ENCLV Exiting: Can set=No, Can clear=Yes
-[   92.608737] Exit Controls MSR: 0x3fefff00036dff
-[   92.613380]   Save Debug Controls: Can set=Yes, Can clear=No
-[   92.619320]   Host Addres-Space Size: Can set=Yes, Can clear=Yes
-[   92.625434]   Load IA32_PERF_GLOBAL_CTRL: Can set=No, Can clear=Yes
-[   92.631808]   Acknowledge Interrupt On Exit: Can set=Yes, Can clear=Yes
-[   92.638622]   Save IA32_PAT: Can set=Yes, Can clear=Yes
-[   92.643955]   Load IA32_PAT: Can set=Yes, Can clear=Yes
-[   92.649289]   Save IA32_EFER: Can set=Yes, Can clear=Yes
-[   92.654717]   Load IA32_EFER: Can set=Yes, Can clear=Yes
-[   92.660137]   Save VMXpreemption Timer Value: Can set=No, Can clear=Yes
-[   92.666861]   Clear IA32_BNDCFGS: Can set=No, Can clear=Yes
-[   92.672570]   Conceal VMX from PT: Can set=No, Can clear=Yes
-[   92.678423]   Clear IA32_RTIT_CTL: Can set=No, Can clear=Yes
-[   92.684191]   Clear IA32_LBR_CTL: Can set=No, Can clear=Yes
-[   92.689871]   Load CET state: Can set=No, Can clear=Yes
-[   92.695209]   Load PKRS: Can set=No, Can clear=Yes
-[   92.700113]   Activate Secondary Controls: Can set=No, Can clear=Yes
-[   92.708188] Entry Controls MSR: 0xd3ff000011ff
-[   92.712744]   Load Debug Controls: Can set=Yes, Can clear=No
-[   92.718511]   IA-32e Mode Guest: Can set=Yes, Can clear=Yes
-[   92.724191]   Entry to SMM: Can set=No, Can clear=Yes
-[   92.729351]   Deactivate Dual Monitor Treatment: Can set=No, Can clear=Yes
-[   92.736422]   Load IA32_PERF_GLOBAL_CTRL: Can set=No, Can clear=Yes
-[   92.742796]   Load IA32_PAT: Can set=Yes, Can clear=Yes
-[   92.748139]   Load IA32_EFER: Can set=Yes, Can clear=Yes
-[   92.753559]   Load IA32_BNDCFGS: Can set=No, Can clear=Yes
-[   92.759151]   Conceal VMX from PT: Can set=No, Can clear=Yes
-[   92.764918]   Load IA32_RTIT_CTL: Can set=No, Can clear=Yes
-[   92.770695]   Load CET State: Can set=No, Can clear=Yes
-[   92.776030]   Load Guest IA32_LBR_CTL: Can set=No, Can clear=Yes
-[   92.782143]   Load PKRS: Can set=No, Can clear=Yes
-
-
-```
-
- > Now we can decide that CPU does not have Tertiary Procbased Controls as the "Activate Tertiary Controls" feature in Procbased Controls cannot be set. Secondary Procbased Controls are available because the "Activate Secondary Controls" under Procbased Controls can be set and we can see those features listed as well.
-
-### Removing the Linux kernel
-
- > By using the rmod command we can remove the module from the kernel
-
-`rmmod cmpe283assg1`
-
-### Clean
-
- > Run the following command to remove all the executables
-
-`make clean`
-
-### References:
-
-https://cloud.google.com/compute/docs/instances/nested-virtualization/enabling
-https://sjsu.instructure.com/courses/1530373/files/70231909
-
+step-8: Run "sudo dmesg" to print the output.  
+![Screenshot (424)](https://user-images.githubusercontent.com/45283425/200283435-e90f55f1-c93e-4334-b929-54065eb36b8a.png)
+![Screenshot (425)](https://user-images.githubusercontent.com/45283425/200283483-c09da4f1-3c5d-47ae-b0c6-c89c86bb7263.png)
+![Screenshot (426)](https://user-images.githubusercontent.com/45283425/200283525-a2c1dc23-d6d3-4969-98e1-05d0cc8f5685.png)
