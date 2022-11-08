@@ -13,6 +13,7 @@ gcloud compute instances create cmpe283assignment1 \
 ![screenshot(1)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%209.19.10%20PM.png)
 
 step-2: Created a cmpe283assig.c source file inside a directory. Copied the content given by the professor for pinbased and added capabilities info for Primary Processor-Based, Secondary Processor-Based, Primary VM-Exit Controls, VM-Entry Controls and Tertiary Processor-Based VM-Execution Controls in the .c file.  
+![Screenshot(12)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/2.png)
 
 
 Step-3: Now, sudo bash command is given to go into the root and install "make" using command "apt install gcc make" and exit from the root user.
