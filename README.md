@@ -2,14 +2,8 @@
 
 # CMPE283Assignment1
 
-# Questions:
-Describe in detail the steps you used to complete the assignment. Consider your reader to be someone 
-skilled in software development but otherwise unfamiliar with the assignment. Good answers to this 
-question will be recipes that someone can follow to reproduce your development steps.
-Note: I may decide to follow these instructions for random assignments, so you should make sure 
-they are accurate.
 
-# Answers:
+##Following Method
 step-1: Created a virtual machine instance with nested virtualization enabled through cloud shell.  
 gcloud compute instances create cmpe283assignment1 \
   --enable-nested-virtualization \
@@ -18,9 +12,9 @@ gcloud compute instances create cmpe283assignment1 \
 ![screenshot(1)](https://github.com/poojan4ps/CMPE283-Virtualization_Technology/blob/master/screenshot/Screen%20Shot%202022-11-07%20at%209.19.10%20PM.png)
 
 step-2: Created a cmpe283assig.c source file inside a directory. Copied the content given by the professor for pinbased and added capabilities info for Primary Processor-Based, Secondary Processor-Based, Primary VM-Exit Controls, VM-Entry Controls and Tertiary Processor-Based VM-Execution Controls in the .c file.  
-![Screenshot_(0)]()
 
-step-3: Now, sudo bash command is given to go into the root and install "make" using command "apt install gcc make" and exit from the root user.  
+
+Step-3: Now, sudo bash command is given to go into the root and install "make" using command "apt install gcc make" and exit from the root user.  
 
 
 step-4: Run "sudo apt install linux-headers-$(uname -r)"  
